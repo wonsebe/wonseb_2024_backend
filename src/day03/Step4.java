@@ -22,26 +22,10 @@ public class Step4 {
         int b = scanner.nextInt();
         int c = scanner.nextInt();
 
-        // A = 7 , B = 5 , c = 10
-        if (a > b) {                    // 2. 만약에 a가 b보다 크면 a와 b의 값 교환      7 > 5      true
-            int temp = a;                 // 임시변수에 a값 넣고                        temp = 7
-            a = b;                     // b값 을 a에 넣고                           a = 5
-            b = temp;                   // 임시변수 값을 b에 넣는다.                  b = 7
-        }
-        // A = 5 , B = 7 , c = 10
-        if (a > c) {                    // 2. 만약에 a가 c보다 크면 a와 c의 값 교환       5 > 10    false
-            int temp = a;
-            a = c;
-            c = temp;
-        }
-        // A = 5 , B = 7 , c = 10
-        if (b > c) {                  // 2. 만약에 b가 c보다 크면 b와 c의 값 교환       7 > 10    false
-            int temp = b;
-            b = c;
-            c = temp;
 
-        }
-        System.out.println("오름차순 : a->b->c");
+
+
+
     }// 5 7 10
 
 
