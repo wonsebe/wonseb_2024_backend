@@ -8,32 +8,33 @@ public class Step4 {
         Scanner scan = new Scanner(System.in);
 //        [ 반복문 없이 풀이하는 입출력과 조건문 문제 ]
 //        문제1 : 점수를 정수형으로 입력받아 점수가 90점 이상이면 '합격' 아니면 '불합격' 출력 하시오.
-        int question1 = scan.nextInt();
-        if (question1 >= 90) {
-            System.out.println("합격");
-        } else {
-            System.out.println("불합격");
-        }
+//        System.out.print("점수 : ");
+//        int question1 = scan.nextInt();
+//        if (question1 >= 90) {
+//            System.out.println("합격");
+//        } else {
+//            System.out.println("불합격");
+//        }
 
 
         //문제2 : 점수를 정수형으로 입력받아 점수가 90점 이상이면 'A등급', 80점 이상이면 'B등급', 70점 이상이면 'C등급', 그외 '재시험' 으로 출력 하시오.
-/*
-        System.out.print("점수 : ");
-        int 점수 = scanner.nextInt();
 
-        if (점수 >= 90) {
-            System.out.print("A등급");
-        } else if (점수 >= 80) {
-            System.out.print("B등급");
-        } else if (점수 >= 70) {
-            System.out.print("C등급");
-        } else {
-            System.out.println("재시험");
-        }*/
+//        System.out.print("점수 : ");
+//        int 점수 = scan.nextInt();
+//
+//        if (점수 >= 90) {
+//            System.out.print("A등급");
+//        } else if (점수 >= 80) {
+//            System.out.print("B등급");
+//        } else if (점수 >= 70) {
+//            System.out.print("C등급");
+//        } else {
+//            System.out.println("재시험");
+//        }
 
 
 //
-//                문제3 : 각 3개의 정수형으로 수를 입력받아 가장 큰 수를 출력 하시오. [ 전제조건 : 각 정수는 서로 다른 정수값 ]
+//      문제3 : 각 3개의 정수형으로 수를 입력받아 가장 큰 수를 출력 하시오. [ 전제조건 : 각 정수는 서로 다른 정수값 ]
 //        System.out.print(" >> 정수 1 : ");
 //        int int1 = scan.nextInt();
 //        System.out.print(" >> 정수 2 : ");
@@ -46,25 +47,16 @@ public class Step4 {
 //        else if(int2 > int3) {large= int2;}
 //        else{large= int3;}
 //        System.out.println(" >> 가장 큰 수는 " + large + "입니다.");
-//
+
 //        문제4 : 각 3개의 정수형으로 수를 입력받아 오름차순 순서대로 출력하시오. [ 전제조건 : 각 정수는 서로 다른 정수값 ]
 //        int a = scan.nextInt(); int b = scan.nextInt(); int c = scan.nextInt();
 //        // 오름차순 : 1, 2, 3
 //        if (a == b || a == c || b == c) { // SWAP
 //            System.out.println("서로 같은 정수값이 있습니다");
-//        } if (a > b) {
-//            int temp = a;
-//            a = b;
-//            b = temp;
-//        } if (b > c) {
-//            int temp = b;
-//            b = c;
-//            c = temp;
-//        } if (a > b) {
-//            int temp = a;
-//            a = b;
-//            b = temp;
-//
+//        }
+//        if (a > b) {  int temp = a;   a = b; b = temp; }
+//        if (b > c) { int temp = b; b = c;  c = temp;   }
+//        if (a > b) {  int temp = a;  a = b;  b = temp;  }
 //        System.out.printf("\n정수의 순서는 %d, %d, %d", a, b, c);
 
 //
@@ -76,9 +68,9 @@ public class Step4 {
 
 //            System.out.println("가위: 0, 바위: 1, 보: 2");
 //            System.out.print("플레이어1 입력: ");
-//            int player1 = scanner.nextInt();
+//            int player1 = scan.nextInt();
 //            System.out.print("플레이어2 입력: ");
-//            int player2 = scanner.nextInt();
+//            int player2 = scan.nextInt();
 //            int result = player1 - player2;
 //            if (result == 0) {
 //                System.out.println("무승부");
@@ -111,14 +103,15 @@ public class Step4 {
 //   [ 처리출력 조건 ] 1분당 1000원으로 계산하여 사용요금' 0000원' 을 출력하시오,
 //        - 단 입차 시간 이전 으로 입력 할 경우에는 '출차시간 오류' 출력하시오.
 ////
-//        int inHour = 9; int inMinute = 30;
-//        System.out.println(">> 출차시간_시간 : "); int outHour = scan.nextInt();
-//        System.out.println(">> 출차시간_분 : ");   int outMinute = scan.nextInt();
-//        int passedTime = (outHour*60 + outMinute) - (inHour*60 + inMinute);
-//        if (passedTime < 0) {
-//            System.out.println("출차시간 오류");
-//        } else {
-//            System.out.printf("\n사용요금 %4d원", passedTime * 1000);
+        int inHour = 9; int inMinute = 30;
+        System.out.println(">> 출차시간_시간 : "); int outHour = scan.nextInt();
+        System.out.println(">> 출차시간_분 : ");   int outMinute = scan.nextInt();
+        int passedTime = (outHour*60 + outMinute) - (inHour*60 + inMinute);
+        if (passedTime < 0) {
+            System.out.println("출차시간 오류");
+        } else {
+            System.out.printf("\n사용요금 %4d원", passedTime * 1000);
+            }
     }
 //                문제8 : 로그인 처리
 //   [입력 조건] 아이디[문자열] 와 비밀번호[문자열] 를 입력받기
