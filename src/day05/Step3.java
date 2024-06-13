@@ -23,6 +23,8 @@ public class Step3 {//class s
 //        //[2] 입력받은 수 만큼 별 출력하는데 3의 배수마다 줄바꿈 처리 하시오.
 //        System.out.println("[2] 별 개수 : ");
 //        int star2= scanner.nextInt(); //scanner객체 생성은 {} 마다 1번 선언
+
+
 //        System.out.println("star2 = " + star2);
 //            //입력받은 수 만큼 '*' 출력 만약에 3의 배수이면 줄바꿈 처리
 //        for(int i=1; i<=star2; i++){
@@ -69,6 +71,12 @@ public class Step3 {//class s
 //        }
 //        System.out.println(html);
 
+        // *
+        // **
+        // ***
+        // ****
+        // *****
+
         //문5
         //현재 줄 (cLine) 은 1부터 입력받은 줄 수 (iLine) 만큼 1씩 증가 반복
 //        for(int cLine =1; cLine <=cLine; cLine++){}
@@ -102,6 +110,12 @@ public class Step3 {//class s
 ////        }
 //        System.out.println(html);
 
+        //     *
+        //    **
+        //   ***
+        //  ****
+        // *****
+
         //[6]
 //        System.out.print("[6] 줄 수 :"); //안내문 출력
 //        int iLine= scanner.nextInt(); //키보드로부터 입력받은 값을 반환 해서 변수에 저장
@@ -115,7 +129,11 @@ public class Step3 {//class s
 //            html +="\n";
 //        }System.out.println(html);
 
-
+        // *****
+        // ****
+        // ***
+        // **
+        // *
 
 
 
@@ -135,7 +153,11 @@ public class Step3 {//class s
 //        }
 //        System.out.println(html);
 
-
+        // *****
+        //  ****
+        //   ***
+        //    **
+        //     *
 
         //[8]
 //        System.out.print("[6] 줄 수 :"); //안내문 출력
@@ -152,24 +174,66 @@ public class Step3 {//class s
 //            html +="\n";
 //        }
 //        System.out.println(html);
+
+        //     *
+        //    ***
+        //   *****
+        //  *******
 //
         //[9]
-        System.out.print("[6] 줄 수 :"); //안내문 출력
-        int iLine= scanner.nextInt(); //키보드로부터 입력받은 값을 반환 해서 변수에 저장
-        String html="";
-        for(int cLine =1; cLine <=iLine; cLine++) {
+//        System.out.print("[6] 줄 수 :"); //안내문 출력
+//        int iLine= scanner.nextInt(); //키보드로부터 입력받은 값을 반환 해서 변수에 저장
+//        String html="";
+//        for(int cLine =1; cLine <=iLine; cLine++) {
+//
+//            for(int blank= 1; blank <= cLine-1; blank++){
+//                html += " ";
+//           }
+//            for(int star =1; star <=(iLine-cLine)*2-1; star++){
+//                html += "*";
+//        }
+//            html += "\n";
+//        }
+//        System.out.println(html);
 
-            for(int blank= 1; blank <= cLine-1; blank++){
-                html += " ";
-           }
-            for(int star =1; star <=(iLine-cLine)*2-1; star++){
-                html+= "*";
-        }
-            html +="\n";
+        //  *******
+        //   *****
+        //    ***
+        //     *
+
+
+
+        System.out.print("[10] 줄 수 입력 : ");
+        int iLine = scanner.nextInt();
+        String html="";
+        for (int cLine = 1; cLine <= iLine; cLine++) {
+            if (cLine <= iLine / 2 + 1) {
+                for (int blank = iLine; blank > cLine; blank--) {
+                    html += " ";
+                }
+                for (int blank = 1; blank <= cLine * 2 - 1; blank++) {
+                    html += "*";
+                }
+            } else {
+                for (int blank = 1; blank <= cLine - 1; blank++) {
+                    html += " ";
+                }
+                for (int blank = iLine * 2 - 1; blank >= cLine * 2 - 1; blank--) {
+                    html += "*";
+                }
+            }html += "\n";
+
+
         }
         System.out.println(html);
 
-
+        //     *
+        //    ***
+        //   *****
+        //  *******
+        //   *****
+        //    ***
+        //     *
 
 
         
