@@ -3,41 +3,29 @@ package 과제1.level1;
 import java.util.Scanner;
 
 public class answer7 {
-//고치기
+
     public static void main(String[] args) {
-        Scanner scanner= new Scanner(System.in);
-        String a="유재석";
-        boolean b=true;
-        byte c= 20;
-        char d='M';
-        short e=45;
-        int f=25000;
-        long l=5000000;
-        float i=78.2F;
-        double k=88.59;
-
-        System.out.print("회원명 String : "); scanner.nextLine();
-        System.out.print("상태 boolean : "); scanner.nextLine();
-        System.out.print("회원번호 byte : "); scanner.nextLine();
-        System.out.print("성별 char : "); scanner.nextLine();
-        System.out.print("나이 short : "); scanner.nextLine();
-        System.out.print("포인트 int : "); scanner.nextLine();
-        System.out.print("예금액 long : "); scanner.nextLine();
-        System.out.print("키 float : "); scanner.nextLine();
-        System.out.print("몸무게 double : "); scanner.nextLine();
-
-        System.out.print("===========회원개인정보============"); scanner.nextLine();
-        System.out.print("|       회원명 :              "+a+        "|"); scanner.nextLine();
-        System.out.print("|       상태 :                 "+b+             "|"); scanner.nextLine();
-        System.out.print("|       회원번호 :               "+c+         "|"); scanner.nextLine();
-        System.out.print("|       성별 :                   "+d+      "|"); scanner.nextLine();
-        System.out.print("|       나이 :                  "+e+      "|"); scanner.nextLine();
-        System.out.print("|       포인트 :             "+f+      "|"); scanner.nextLine();
-        System.out.print("|       예금액 :            "+l+      "|"); scanner.nextLine();
-        System.out.print("|       키 :                  "+i+      "|"); scanner.nextLine();
-        System.out.print("|       몸무게 :              "+k+      "|"); scanner.nextLine();
-        System.out.print("================================="); scanner.nextLine();
-
+        Scanner scan=new Scanner(System.in);
+        System.out.print("회원명 String: "); String s=scan.next();
+        System.out.print("상태 boolean: "); boolean bo=scan.nextBoolean();
+        System.out.print("회원번호 byte: "); byte by=scan.nextByte();
+        System.out.print("성별 char: "); char c=scan.next().charAt(0);
+        System.out.print("나이 short: "); short sh=scan.nextShort();
+        System.out.print("포인트 int: "); int i=scan.nextInt();
+        System.out.print("예금액 long: "); long l=scan.nextLong();
+        System.out.print("키 float: "); float f=scan.nextFloat();
+        System.out.print("몸무게 double: "); double d=scan.nextDouble();
+        System.out.println("==========회원 개인정보===============");
+        System.out.println("|         회원명: "+s);
+        System.out.println("|         상태: "+bo);
+        System.out.println("|         회원번호: "+by);
+        System.out.println("|         성별: "+c);
+        System.out.println("|         나이: "+sh);
+        System.out.println("|         포인트: "+i);
+        System.out.println("|         예금액: "+l);
+        System.out.println("|         키: "+f);
+        System.out.println("|         몸무게: "+d);
+        System.out.println("====================================");
 
 
     }
