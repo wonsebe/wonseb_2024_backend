@@ -29,8 +29,16 @@ public class 축구 {
         this.position=position;
     }
 
-    축구(int number, String name, int age, String position, String location){
-        this.location=location;
+    public 축구(int age, int number, String name, String position, String location) {
+        this.age = age;
+        this.number = number;
+        this.name = name;
+        this.position = position;
+        this.location = location;
+    }
+
+    public void showInfo(){
+        System.out.print(getNumber() +",\t" + getName() + ",\t" +getAge() +",\t" + getPosition()+ ",\t" + getLocation()+"\n");
     }
     //getter and setter
 
