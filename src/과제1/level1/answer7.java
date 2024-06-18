@@ -15,6 +15,8 @@ public class answer7 {
         System.out.print("예금액 long: "); long l=scan.nextLong();
         System.out.print("키 float: "); float f=scan.nextFloat();
         System.out.print("몸무게 double: "); double d=scan.nextDouble();
+
+
         System.out.println("==========회원 개인정보===============");
         System.out.println("|         회원명: "+s);
         System.out.println("|         상태: "+bo);
