@@ -19,7 +19,7 @@ public class answer1 {
 
         /* 문제풀이 위치 */
         int num=1;
-        for(num=0;num)
+
 
 
         /* ----------- */
