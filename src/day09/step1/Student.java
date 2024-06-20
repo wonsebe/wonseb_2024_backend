@@ -15,7 +15,7 @@ public class Student {
         //지역변수는 쓰레기값 들어감 - 임의값 들어감
             //지역변수(함수/메소드 안에서 선언) vs 멤버변수(클래스 안 메소드 밖에서 선언된 변수)
 
-
+    //멤버변수/필드 생성
     public  String studentName;
     public  int grade;
     public  int money;
