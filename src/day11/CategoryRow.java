@@ -4,6 +4,12 @@ public class CategoryRow {
     private int categoryCode;
     private String categoryName;
 
+    public CategoryRow() {}
+    public CategoryRow(int categoryCode, String categoryName) {
+        this.categoryCode = categoryCode;
+        this.categoryName = categoryName;
+    }
+
     public int getCategoryCode() {
         return categoryCode;
     }

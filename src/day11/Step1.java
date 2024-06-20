@@ -8,6 +8,8 @@ public class Step1 {
     public static void main(String[] args) {
         Scanner scan= new Scanner(System.in);
 
+        ArrayList<CartRow> cartTable = new ArrayList<>();
+
         ArrayList<CategoryRow> categoryTable=new ArrayList<>();
         //메모리설계 셈플
         CategoryRow c1= new CategoryRow(); //객체
@@ -41,14 +43,14 @@ public class Step1 {
         OrderRow o2= new OrderRow(2,"2024-06-19");
         OrderRow o3= new OrderRow(3,"2024-06-18");
 
-        orderTable.add(o1);
-        orderTable.add(o2);
-        orderTable.add(o3);
+        orderTable.add(o1);                 //주문목록1  아메리카노 5 라떼 2
+        orderTable.add(o2);                 //주문목록2 :주문2 : 청포도에이드 3
+        orderTable.add(o3);                 //주문목록3 : 티 3
 
         ArrayList<OrderInfoRow>orderInfoTable=new ArrayList<>();
         OrderInfoRow i1= new OrderInfoRow(1, 5,1,1);
         OrderInfoRow i2= new OrderInfoRow(2, 2,2,1);
-        OrderInfoRow i3= new OrderInfoRow(4, 1,3,3);
+        OrderInfoRow i3= new OrderInfoRow(3, 1,3,3);
 
         orderInfoTable.add(i1);
         orderInfoTable.add(i2);
@@ -67,24 +69,167 @@ public class Step1 {
             System.out.println("5.Cart Add");      System.out.println("6.Cart List");
             System.out.println("7.Order Add");      System.out.println("8.Order List");
             System.out.print("Menu choose : ");     int ch = scan.nextInt();
-            if( ch == 1 ){}
-            else if ( ch == 2 ){}
-            else if ( ch == 3 ){}
-            else if ( ch == 4 ){}
-            else if ( ch == 5 ){}
-            else if ( ch == 6 ){}
-            else if ( ch == 7 ){}
-            else if ( ch == 8 ){}
+            if( ch == 1 ){
+                    // 1. 무엇을 입력받을지 안내/출력
+                    System.out.print("카테고리명 : ");
+                    // ===================== 카테고리 객체를 만들 준비물 ====================== //
+                    // 2. 위에 출력문을 보고 입력받은 값을 변수에 저장
+                    String category = scan.next();
+                    // 3. 카테고리리스트내 마지막인덱스의 카테고리코드+1
+                    int categoryCode = categoryTable.get( categoryTable.size()-1 ).getCategoryCode()+1;
+                    // js : categoryTable[ categoryTable.length-1 ].code+1
+                    // ===================================================================== //
+                // 4. 위 객체ㅂ준비를 생성자에 넣어서 객체 생성
+                CategoryRow categoryRow = new CategoryRow( categoryCode , category );
+                // 5  위 생성된 객체를 리스트에 저장
+                categoryTable.add( categoryRow );
+                // 확인
+                System.out.println(categoryTable);
+            }
+            else if ( ch == 2 ){
+                for (int i = 0; i < categoryTable.size(); i++ ){
+                    System.out.println(categoryTable.get(i));
+                }
+            }
+            else if ( ch == 3 ){
+                boolean check=false;
+                System.out.print("카테고리번호 : ");
+                int categoryNum = scan.nextInt();
+                System.out.print("제품명 : ");
+                String menuName = scan.next();
+                System.out.print("제품가격 : ");
+                int menuPrice = scan.nextInt();
+
+                for(int i=0; i< categoryTable.size(); i++){
+                    if(categoryTable.get(i).getCategoryCode()==categoryNum){
+                        int menuCode = menuTable.get( menuTable.size()-1 ).getMenuCode()+1;
+                        MenuRow menuRow = new MenuRow( menuCode , categoryNum, menuPrice, menuName );
+                        menuTable.add( menuRow );
+                        check=true;
+                        break;
+                    }
+                }
+                if(check==false){
+                    System.out.println("[경고]없는 카테고리번호 입니다.");
+                }
+
+                //확인
+                System.out.println(menuTable);
+
+            }
+            else if ( ch == 4 ){
+
+                for(int i=0; i< categoryTable.size(); i++) {
+
+                    for (int j = 0; j < menuTable.size(); j++) {
+                        if (categoryTable.get(i).getCategoryCode() == menuTable.get(j).getCategoryCode()) {
+
+                            System.out.println(menuTable.get(j));
+                        }
+                    }
+                }
+
+            }
+            else if ( ch == 5 ){
+                boolean check=false;
+
+                System.out.print("제품번호 : ");
+                int menuCode = scan.nextInt();
+
+                System.out.print("주문수량 : ");
+                int orderAmount = scan.nextInt();
+
+                for(int i=0; i< menuTable.size(); i++){
+                    if(menuTable.get(i).getMenuCode()==menuCode){
+                        int cartCode = 0;
+
+                        if (cartTable.size() == 0) {
+                            cartCode = 1;
+                        } else {
+                            cartCode = cartTable.get( cartTable.size() - 1 ).getCartCode()+1;
+                        }
+
+                        CartRow cartRow = new CartRow( cartCode , menuCode, orderAmount );
+                        cartTable.add( cartRow );
+                        check=true;
+                        break;
+                    }
+                }
+                if(check==false){
+                    System.out.println("[경고]없는 제품번호 입니다.");
+                }
+
+                //확인
+                System.out.println(cartTable);
+
+            }
+            else if ( ch == 6 ){
+                for (int i = 0; i < cartTable.size(); i++ ){
+                    System.out.println(cartTable.get(i));
+                }
+
+            }
+            else if ( ch == 7 ){
+                System.out.print("주문날짜 :");
+                String orderDate = scan.next();
+
+                int orderCode = orderTable.get( orderTable.size()-1 ).getOrderCode()+1;
+                // 주문 객체
+                OrderRow orderRow = new OrderRow( orderCode , orderDate );
+                // 주문 객체를 주문리스트에 담기
+                orderTable.add( orderRow );
+
+                // 주문상세 객체
+                for( int i = 0 ; i < cartTable.size() ; i++ ){
+
+                    // 객체 넣을준비물
+                    int orderInfoCode = orderInfoTable.get( orderInfoTable.size()-1).getOrderInfoCode()+1;
+                    int orderAmount =  cartTable.get(i).getOrderAmount();
+                    int menuCode = cartTable.get(i).getMenuCode();
+                    int oCode = orderCode;
+                    // 객체 만들고
+                    OrderInfoRow orderInfo = new OrderInfoRow( orderInfoCode , orderAmount , menuCode , oCode );
+                    // 주문상세 객체를 주문상세리스트에 담기
+                    orderInfoTable.add( orderInfo );
+                }
+                cartTable.clear();
+
+                //확인
+                System.out.println(orderInfoTable);
+                System.out.println(orderTable);
+
+            }
+            else if ( ch == 8 ){
+
+                for(int i=0; i< orderInfoTable.size(); i++) {
+
+                    int menuAmount = orderInfoTable.get(i).getOrderAmount();
+
+                    for(int j=0; j<menuTable.size(); i++) {
+                        if(orderInfoTable.get(i).getMenuCode()==menuTable.get(j).getMenuCode()){
+                            String menuName = menuTable.get(j).getMenuName();
+                            System.out.println(menuName);
+                            System.out.println(menuAmount);
+                            break;
+
+                        }
+
+                    }
+
+
+
+                }
+
+            }
             else {}
         } // w end
 
-
-
-
-
-
-
-
-
     }
 }
+
+//            8. Order List       :  주문상세의 제품명 , 수량을 모두출력하시오.
+// 주문코드o 제품명x
+// 제품명, 수량
+//  아메리카노, 5
+// 라떼,  2
+//        [3.샘플]
