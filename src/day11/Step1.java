@@ -205,7 +205,7 @@ public class Step1 {
 
                     int menuAmount = orderInfoTable.get(i).getOrderAmount();
 
-                    for(int j=0; j<menuTable.size(); i++) {
+                    for(int j=0; j<menuTable.size(); j++) {
                         if(orderInfoTable.get(i).getMenuCode()==menuTable.get(j).getMenuCode()){
                             String menuName = menuTable.get(j).getMenuName();
                             System.out.println(menuName);

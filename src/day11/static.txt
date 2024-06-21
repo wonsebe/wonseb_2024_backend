@@ -1,0 +1,6 @@
+
+
+
+Category Add, Category List 구현 코드에서 사용되는 지역변수, static변수, 멤버변수,객체들이 저장되는 구역 찾기
+위 함수에서 사용되는 코드들의 JVM들의 구분지어 PPT/켄바로 표현
+-
