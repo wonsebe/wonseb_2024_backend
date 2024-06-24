@@ -17,17 +17,17 @@ public class answer7 {
         System.out.print("몸무게 double: "); double d=scan.nextDouble();
 
 
-        System.out.println("==========회원 개인정보============");
-        System.out.println("|         회원명: "+s+"\t\t|");
-        System.out.println("|         상태: "+bo+"\t\t\t\t|");
+        System.out.println("==========회원 개인정보========");
+        System.out.println("|         회원명:" +s+    "\t\t\t|");
+        System.out.println("|         상태: "+bo+"\t\t\t|");
         System.out.println("|         회원번호: "+by+"\t\t|");
         System.out.println("|         성별: "+c+"\t\t\t|");
         System.out.println("|         나이: "+sh+"\t\t\t|");
-        System.out.println("|         포인트: "+i+"\t\t\t|");
+        System.out.println("|         포인트: "+i+"\t\t|");
         System.out.println("|         예금액: "+l+"\t\t\t|");
         System.out.println("|         키: "+f+"\t\t\t|");
         System.out.println("|         몸무게: "+d+"\t\t|");
-        System.out.println("====================================");
+        System.out.println("=============================");
 
 
     }

@@ -18,7 +18,7 @@ public class answer1 {
         System.out.println("--------------------- for문으로 출력 ------------------");
 
         /* 문제풀이 위치 */
-        for(int i=0; i <=10; i++ ){
+        for(int i=1; i <=10; i++ ){
             System.out.println("안녕하세요"+i);
         }
         /* ----------- */
