@@ -24,6 +24,6 @@ public class answer2 {
         System.out.printf("int: %d               -+2000 millon\n" ,e);
         System.out.printf("long: %d      -+2000 millon Excess\n" ,f );
         System.out.printf("float: %f            8 decimal places\n" ,i );
-        System.out.printf("double: %9f          17 decimal places\n" +j );
+        System.out.printf("double: %f          17 decimal places\n" ,j );
     }
 }

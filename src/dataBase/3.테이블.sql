@@ -40,7 +40,7 @@
 		tstate int default 10
 		);    
 	#레코드 추가
-		insert into t2(tno, tname) values (1, '유재석',); #생략된 tdate,tstate      ???????
+		#insert into t2(tno, tname) values (1, '유재석',); #생략된 tdate,tstate      ???????
 		insert into t2 values(1,'강호동','2024-06-21 11:00:30',3);
 		#확인
 		select *from t2;
