@@ -29,6 +29,7 @@ public class Step2 {
 
         //si.method9(7);//private 이므로 외부 클래스로부터 사용불가
         //si.method10("JAVA");//private 이므로 외부 클래스로부터 사용불가
+
         System.out.println(StepInterface.value);
 
 
