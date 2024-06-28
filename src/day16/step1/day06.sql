@@ -6,7 +6,7 @@
     drop table if exists member;
     create table member( #아이디, 비밀번호, 이름, 연락처,가입일 ,회원번호 (pk,ai)
         mid varchar(20) not null unique,
-        pmwd varchar(30) not null,
+        mpwd varchar(30) not null,
         mname varchar(20) not null,
         mphone varchar(15) not null,
         mdate datetime default now(),
@@ -46,11 +46,12 @@
     #ERR 다이어그램 확인
     #샘플 데이터 등록
     #회원 5명
-    insert into member(mid,pmwd,mname,mphone) values('gs00','0018','유재석','010-0000-0000');
-    insert into member(mid,pmwd,mname,mphone) values('dy00','9797','신동엽','010-3432-0000');
-    insert into member(mid,pmwd,mname,mphone) values('hd00','5767','강호동','010-3436-0000');
-    insert into member(mid,pmwd,mname,mphone) values('sb00','5545','원세빈','010-8664-0000');
-    insert into member(mid,pmwd,mname,mphone) values('kn00','3453','원카니','010-7788-0000');
+    insert into member(mid,mpwd,mname,mphone) values('gs00','0018','유재석','010-0000-0000');
+    insert into member(mid,mpwd,mname,mphone) values('dy00','9797','신동엽','010-3432-0000');
+    insert into member(mid,mpwd,mname,mphone) values('hd00','5767','강호동','010-3436-0000');
+    insert into member(mid,mpwd,mname,mphone) values('sb00','5545','원세빈','010-8664-0000');
+    insert into member(mid,mpwd,mname,mphone) values('kn00','3453','원카니','010-7788-0000');
+    
 
   # 게시물 5개
     insert into board(btitle,bcontant,mno) values('제목: 하하하.1','내용: 오늘은.1',1);
@@ -66,6 +67,14 @@
     insert into replay(rcontant,mno,bno) values('아니근데3',2,3);
     insert into replay(rcontant,mno,bno) values('별로4',1,4);
     insert into replay(rcontant,mno,bno) values('우울해5',3,1); # 1번 게시물에 3번이( 강호동) 댓글을 닮.
+    
+    #탈퇴
+    delete from member where mno =1 ;
+    #회원번호가 '1'이면서 비밀번호가 '2'인 회원 삭제
+    delete from member where mno =1 and mpwd=2;
+    # delete from member where mno =? and mpwd=?;
+    
+   
 
 
 
