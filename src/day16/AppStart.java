@@ -12,3 +12,4 @@ public class AppStart {// MemberView라는 클래스를 공개적으로 정의
 
 
 }//AppStart e
+

@@ -15,15 +15,26 @@ import java.util.Scanner;
 
 public class MemberView {
 // MemberView라는 클래스를 공개적으로 정의하는 것
-    //-해당 클래스의 함수들을 다른 클래스에서 호출 할 수 있도록 static 변수에 해당
+    //-해당 클래스의 함수들을 다른 클래스에서 호출 할 수 있도록 static 변수에 해당 객체 만들기
+        //-static 선언시점:프로그램 시작시 , static 사라짐/초기화 시점: 프로그램 종료시
+        //-메소드를 실행하기 위해서는 객체 필요, static 메소드가 아닌이상.
+    //멤버변수는 객체 마다 할당 , 메소드는 객체마다 실행 / 코드 공유
+    //-객체 1개, n개 상관없음
+    //싱글톤: 프로그램내 전역으로 1개의 객체를 생성 , 주로 전역에서 공유할 때
     //public: 다른 클래스에서도 접근 가능
 
-    public static MemberView mView=new MemberView(); //원래 static만 사용하면 다른 패키지 이기 때문에 안됨.
+    public static MemberView mView=new MemberView();
+    //- 전역객체 -> 모든 곳에서 호출가능한 객체 1개 생성
+    //-안전성 보장
+
+    //원래 static만 사용하면 다른 패키지 이기 때문에 안됨.
     //public을 꼭 써줘야 된다.
     //공개정적 변수를 선언하고 mView가  MemberView()라는 클래스의 객체를 참조하겠다는 뜻의 객체생성을 하였다.
     //static: 정적 메소드로 객체가 생성되기 이전에 메모리에 할당되어 인스턴스를 생성하지 않고 접근할 수 있다.
+    private MemberView(){}//생성자에 private 한다. : 다른 클래스에서 new를 하지 못한다.
+    //객체1개만 생성할 수 있음
 
-
+    //멤버변수 : 입력객체
     Scanner scan=new Scanner(System.in);
     //사용자로부터 입력받기 위해 스캐너라는 클래스를 생성하여 스캔이라는 변수에 입력받겠다는 것
 

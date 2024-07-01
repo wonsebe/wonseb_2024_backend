@@ -12,6 +12,8 @@ public class MemberController { // MemberController라는  클래스를 공개�
     //0.
     public static MemberController mcontrol=new MemberController(); //공개 static클래스 MemberController 에 선언된
     // static변수 mcontrol 선언하여  MemberController갑을 대입하겠다는 객체생성
+    //static 변수를 선언하지 않으면 다른 클래스에서 사용하기 어렵기 때문에 객체 하나만 가지고 여러 클래스에서 사용(공유)하기 위해 static클래스를 선언해줘야한다.
+
 
 
     //1. 회원가입 화면 함수: 아이디(String)비밀번호(String?)이름(String)연락처(String) 회원가입성공여부: boolean
@@ -28,6 +30,8 @@ public class MemberController { // MemberController라는  클래스를 공개�
         //-글쓰기,댓글쓰기 할 때 현재 로그인된 회원을 식별하기 위해서
         //-초기값 :0 비로그인상태, 1~ : 로그인된회원번호(로그인된상태)
     public int loginMno=0; //loginMno를 정수타입으로 하여 0으로 값을 대입함
+
+    //static MemberController으로 하지않고 멤버변수로만 선언할 경우 , 각 클래스가 만든 객체들 각각 수정해줘야한다.(하나만 바꾸면 하나는 바뀌지않음)
 
     //2-2로그아웃 함수
     public  void logout(){ //logout 공개(public) 메서드를 정의

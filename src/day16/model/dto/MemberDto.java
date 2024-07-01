@@ -43,7 +43,8 @@ public class MemberDto { //이동객체
         //클래스 변수 mno 매개변수 mno값 저장
 
     }
-
+    //DB테이블의 회원마다 레코드/행 1개이고  레코드/행 1개당 DTO 1개
+    //->회원이 여러개이면 --> DTO 여러개 --> arrayList<MemberDto> 사용
     public MemberDto(String mid, String mpwd, String mname, String mphone) {
         // 공개 생성자 MemberDto생성(문자열 mid 문자열 mpwd 문자열 mname 문자열 mphone)
         this.mid = mid;

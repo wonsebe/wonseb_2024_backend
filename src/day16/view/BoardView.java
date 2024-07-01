@@ -3,11 +3,14 @@ package day16.view;
 
 import day15.step3_MVC.Controller;
 //day15 패키지 안에 있는 step_MVC 서브 패키지 안에 controller클래스를 현재 파일에서 사용하겠다는 뜻
+import day16.controller.BoardController;
 import day16.controller.MemberController;
 //day16 패키지 안에 있는 controller 패키지에 속한
 // MemberController 클래스를 현재 파일에서 사용하겠다는 것.
+import day16.model.dto.BoardDto;
 import day16.model.dto.MemberDto;
 //day16 패키지 안에 model서브 패키지 안에 dto라는 또다른 패키지 안에 MemberDto클래스를 현재 파일에서 사용하겠다는 뜻
+import java.util.ArrayList;
 import java.util.Scanner;
 // java.util 패키지에 속한 Scanner 클래스를 현재 파일에서 사용할 수 있도록 선언
 
@@ -37,7 +40,9 @@ public class BoardView {// MemberView라는 클래스를 공개적으로 정의�
                }
             }
             else if (ch==4) {bPrint();} //게시판을 누르면 게시판을 작성할 수 있는 함수 bPrint()를 호출
-            else {} //1,2,3,4번 외에 다른 값을 입력할 시 , 잘못입력했다는 안내를 해줌 -초기화면으로 돌아감 -while
+
+
+             else {} //1,2,3,4번 외에 다른 값을 입력할 시 , 잘못입력했다는 안내를 해줌 -초기화면으로 돌아감 -while
 
         }//w e
     }//i e
@@ -104,6 +109,103 @@ public class BoardView {// MemberView라는 클래스를 공개적으로 정의�
 
     //4. 게시판(게시물 전체출력) 함수
     public  void  bPrint(){
+        //BoardController클래스에서 가져온 getInstance함수안에 bPrint값을 BoardDto매개변수로하는 배열에 대입/저장
+        ArrayList<BoardDto> result= BoardController.getInstance().bPrint();
+        System.out.println("번호\t조회수\t작성일\t\t\t제목");
+        result.forEach(dto->{  //리스트객체명 . forEach(반복변수->{실행문; });
+                                    //리스트내 dto를 하나씩 반복변수에 대입 반복
+            System.out.printf("%2d\t%2d\t%10s\t%s \n",dto.getBno(),dto.getBview(),dto.getBdate(),dto.getBtitle());
+        }); //dto안에 번호,조회수,날짜,제목을 가져와 출력
+        System.out.print("0. 글쓰기 1~: 개별글조회"); int ch= scan.nextInt();
+        if(ch==0){
+            bWrite();
+        } else if (ch>=1) { bView(ch);
+
+
+        }
+
+
+    }
+
+
+    //5. 게시물 쓰기 함수 -
+    public void bWrite(){
+        System.out.println(">>글쓰기 <<");
+        scan.nextLine();
+        //입력받기 (제목과 내용)
+        System.out.println(">>[저장]제목입력:"); String btitle= scan.nextLine();
+        System.out.println(">>[저장]내용입력:"); String  bcontent= scan.nextLine();
+
+        BoardDto boardDto=new BoardDto();
+        boardDto.setBtitle(btitle); boardDto.setBcontent(bcontent);
+        //3.입력받은 객체를 컨트롤에게 전달후 결과 응답 받기
+        boolean result= BoardController.getInstance().bWrite(boardDto);
+        if(result){ //결과값이 있으면 글쓰기 성공 출력
+            System.out.println(">>글쓰기 성공");
+        }else {
+            System.out.println(">>글쓰기 실패");
+            //결과값이 없으면 글쓰기 실패 출력
+        }
+
+    }
+
+    //6 게시물 개별조회 함수
+    public  void  bView(int bno){
+
+        //매개변수로 받은 선택받은 게시물을 컨트롤에게 전달
+        BoardDto result =BoardController.getInstance().bView(bno);
+        if(result==null){
+            System.out.println("존재하지 않는 게시물입니다.");
+            return;
+        }
+        System.out.println("제목: "+result.getBtitle());
+        System.out.println("작성자: "+result.getMno());
+        System.out.println("\t조회수: "+result.getBview());
+        System.out.println("작성일: "+result.getBdate());
+        System.out.println("내용: "+result.getBcontent());
+        System.out.println(">>1. 삭제 2. 수정 :");
+        int ch=scan.nextInt();
+
+        if(ch==1){bDelete(bno);}
+        else if (ch==2) {
+            bUpdate(bno);
+        }
+
+
+    }
+
+    //7.게시물 삭제 함수
+
+    public void bDelete(int bno){
+        System.out.println(">>삭제페이지<<");
+
+        boolean result=BoardController.getInstance().bDelete(bno);
+
+        if(result){
+            System.out.println(">>삭제성공");
+        }else {
+            System.out.println(">>삭제실패");
+        }
+
+    }
+
+    //8.게시물 수정 함수
+    public boolean bUpdate(int bno){
+        System.out.println("수정할 제목: ");String btitle= scan.next();
+        System.out.println("수정할 내용: ");String  bcontent= scan.next();
+
+        BoardDto boardDto=new BoardDto();
+         boardDto.setBno(bno);
+        //객체화: MemberDto클래스안에 있는 멤버변수 값을 MemberDto클래스에 변수memberDto에 대입하겠다는 객체 생성
+        boardDto.setBtitle(btitle); boardDto.setBcontent(bcontent);
+
+        boolean result=BoardController.getInstance().bUpdate(boardDto);
+        if(result){
+            System.out.println(">>수정성공"); return true;
+        }else {
+            System.out.println(">>수정실패");
+        }
+        return false;
 
     }
 
