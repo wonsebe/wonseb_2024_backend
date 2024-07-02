@@ -103,9 +103,29 @@ delete from board where bno=0;
 delete from board where bno=0 and mno=0; 
 #작성자 번호가 0이면서 게시물번호가 0인 게시물/레코드 삭제
 
+select *from reply;
+select *from reply where mno=1; #1번 회원번호가 '1'인 회원이 작성한 댓글
 
 
+select *from reply where bno=1; #게시물 번호가 '1'인 게시물의 작성된 댓글들
 
+#게시물 출력
+use day06;
+select *from board;
+
+#게시물 출력시 mno 가 아닌 mid 출력
+	#1 두 테이블을 출력한다
+select *from board, member;
+	#2.두 테이블의 관계 기준으로 (내부)조인한다.
+select *from board, member where board.mno=member.mno;
+select *from board natural join member;
+select *from board join member on board.mno=member.mno;
+select *from board join member using(mno);
+select *from board inner join member on board.mno=member.mno;
+	#테이블명을 간소화할 때
+    select *from board b inner join member m on b.mno=m.mno;
+
+    
 
 
 

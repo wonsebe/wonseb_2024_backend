@@ -2,6 +2,7 @@ package day16.controller;
 
 import day16.model.dao.BoardDao;
 import day16.model.dto.BoardDto;
+import day16.model.dto.ReplyDto;
 
 import java.util.ArrayList;
 
@@ -28,8 +29,11 @@ public class BoardController {
         //다오에게 전체 게시물 조회 요청 후 결과를 반환
         return BoardDao.getInstance().bPrint();
     }
-    // ===========================//
+    // ======게시물 개별 조회=====================//
     public  BoardDto bView(int bno){
+        ///해당 게시물 조회수 처리
+         BoardDao.getInstance().viewIncrease(bno);
+
         //BoardDao에 있는 getInstance안에 bView를 매개변수 게시판번호로하여 반환한다.
     return BoardDao.getInstance().bView(bno);
 
@@ -60,7 +64,23 @@ public class BoardController {
 
 
     }
+    //댓글출력
+    public ArrayList<ReplyDto> rPrint(int bno){
+        return BoardDao.getInstance().rPrint(bno);
 
+    }
+
+    //10 댓글 쓰기 함수
+    public boolean rWrite(ReplyDto replyDto){
+        // 현재 로그인된 회원의 번호, 즉) 작성자 회원번호
+        replyDto.setMno(MemberController.mcontrol.loginMno);
+        //-
+        return BoardDao.getInstance().rWrite(replyDto);
+
+
+
+
+    }
 
 
 

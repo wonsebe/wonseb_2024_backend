@@ -9,6 +9,7 @@ import day16.controller.MemberController;
 // MemberController 클래스를 현재 파일에서 사용하겠다는 것.
 import day16.model.dto.BoardDto;
 import day16.model.dto.MemberDto;
+import day16.model.dto.ReplyDto;
 //day16 패키지 안에 model서브 패키지 안에 dto라는 또다른 패키지 안에 MemberDto클래스를 현재 파일에서 사용하겠다는 뜻
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -114,7 +115,7 @@ public class BoardView {// MemberView라는 클래스를 공개적으로 정의�
         System.out.println("번호\t조회수\t작성일\t\t\t제목");
         result.forEach(dto->{  //리스트객체명 . forEach(반복변수->{실행문; });
                                     //리스트내 dto를 하나씩 반복변수에 대입 반복
-            System.out.printf("%2d\t%2d\t%10s\t%s \n",dto.getBno(),dto.getBview(),dto.getBdate(),dto.getBtitle());
+            System.out.printf("%2d\t%2d\t%10s\t%10s\t%s \n",dto.getBno(),dto.getBview(),dto.getMid(),dto.getBdate(),dto.getBtitle());
         }); //dto안에 번호,조회수,날짜,제목을 가져와 출력
         System.out.print("0. 글쓰기 1~: 개별글조회"); int ch= scan.nextInt();
         if(ch==0){
@@ -163,13 +164,15 @@ public class BoardView {// MemberView라는 클래스를 공개적으로 정의�
         System.out.println("\t조회수: "+result.getBview());
         System.out.println("작성일: "+result.getBdate());
         System.out.println("내용: "+result.getBcontent());
-        System.out.println(">>1. 삭제 2. 수정 :");
+        //------------댓글출력------------//
+        rPrint(bno);
+        System.out.println(">>0.뒤로 가기 1. 삭제 2. 수정 3. 댓글쓰기:");
         int ch=scan.nextInt();
 
         if(ch==1){bDelete(bno);}
-        else if (ch==2) {
-            bUpdate(bno);
-        }
+        else if (ch==2) {bUpdate(bno);}
+        else if (ch==3) { rWrite(bno);}
+        else if (ch==0) {return;}
 
 
     }
@@ -208,5 +211,50 @@ public class BoardView {// MemberView라는 클래스를 공개적으로 정의�
         return false;
 
     }
+
+    //9 댓글 전체 출력 함수
+    public void rPrint(int bno){
+
+        ArrayList<ReplyDto> result = BoardController.getInstance().rPrint(bno);
+        System.out.println(result);
+        //리스트객체명 . forEach(반복변수->{실행문 })
+        //리스트내 요소들을 하나씩 반복변수에 대입 반복처리
+        System.out.println("댓글");
+        result.forEach(reply->{
+            System.out.printf("%s  %d %s %s \n", reply.getRdate(),reply.getMno(),reply.getRcontent(),reply.getMid());
+        }); //ReplyDto안에 번호,조회수,날짜,제목을 가져와 출력
+
+    }
+
+
+    //10 댓글 쓰기 함수
+     public void rWrite(int bno){
+        //만약에 상황상 로그인후 댓글쓰기가 아니였다면
+            //로그인 상태를 확인후 댓글 쓰기 진행
+         if(! MemberController.mcontrol.loginState()){
+             System.out.println("로그인 후 가능합니다");
+             return;
+         }
+         System.out.println(">>댓글쓰기 <<");
+         //위에서 next() 후 엔터 쳤을 때 san 객체에 엔터 개행기록이 남았기 때문에 nextline()인식해서 입력했다는 걸로 간주
+         //- 해결방안 : next() nextLine() 사이에 의미없는 scan.nextLine(); 코드 작성
+         scan.nextLine();
+         //입력받기 (제목과 내용)
+         System.out.println(">>[저장]내용입력:");
+         String rcontent= scan.nextLine();
+         ReplyDto replyDto = new ReplyDto();
+         replyDto.setBno(bno);
+
+         replyDto.setRcontent(rcontent);
+         //3.입력받은 객체를 컨트롤에게 전달후 결과 응답 받기
+         boolean result= BoardController.getInstance().rWrite(replyDto);
+
+         if(result){ //결과값이 있으면 글쓰기 성공 출력
+             System.out.println(">>댓글 쓰기 성공");
+         }else {
+             System.out.println(">>댓글 쓰기 실패");
+             //결과값이 없으면 글쓰기 실패 출력
+         }
+     }
 
 }// B e

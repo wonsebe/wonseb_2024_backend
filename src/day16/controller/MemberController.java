@@ -37,6 +37,13 @@ public class MemberController { // MemberController라는  클래스를 공개�
     public  void logout(){ //logout 공개(public) 메서드를 정의
         loginMno =0; //로그인이 안된 상태를 0으로 지정하여 로그아웃된 상태를 보여줌
     }//logout e
+
+
+    public boolean loginState(){
+        return loginMno ==0? false : true;
+    }
+
+
     //2. 로그인 화면 함수
     public  boolean login(MemberDto memberDto) { //login 공개(public)로 하여 boolean로 값을 반환한다는 메소드 정의
         //MemberDto에  memberDto 을 매개변수로 받아 로그인하는 기능을 수행한다
