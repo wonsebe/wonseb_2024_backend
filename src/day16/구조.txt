@@ -52,6 +52,6 @@
         MemberDao 클래스
         BoardDao(ReplyDao) 클래스
 
-    AppStart 클래스 : 해당 프로그램을 시작하는 클래스
+    project.AppStart 클래스 : 해당 프로그램을 시작하는 클래스
 
 

@@ -37,8 +37,9 @@ public class BoardDao {
         //여러개 DTO 담을 리스트 선언
         ArrayList<BoardDto> list= new ArrayList<>(); //배열 객체  list 선언
         try {//예외처리
-//            String sql= "select * from board";
-            String sql="select * from board b inner join member m on b.mno=m.mno";
+   //         String sql= "select * from board";
+         //  String sql="select * from board b inner join member m on b.mno=m.mno";
+           String sql="select * from board b inner join member m on b.mno=m.mno  order by bno desc;";
             //2.SQL 기재
             ps= conn.prepareStatement(sql); //ps 변수에 데이터베이스 연결 변수 매개변수 sql를 호출한 conn의 준비혹은실행함수prepareStatement 를 호출한다.
             rs=ps.executeQuery();// 실행함수를 받은 ps가 결과를 출력ㅎ는 함수 executeQuery를  결과 변수 rs에 대입
@@ -226,4 +227,43 @@ public class BoardDao {
             System.out.println(e);
         }return false;
     }
+
+    //  12. 제목 검색 함수
+    public ArrayList<BoardDto> search(String title){
+        ArrayList<BoardDto> list = new ArrayList<>();
+        try{
+            //String sql = "select * from board where btitle like '%제%'";  됨
+            //String sql = "select * from board where btitle like '%?%';"; -안됨
+            // ?는 문자처리가 되기 때문에 parameter가 없다고 오류가 뜬다.
+            //String sql = "select * from board where btitle like ?;"; -됨
+            //String sql = "select * from board where btitle like '%"+title+"%'"; -됨?
+           // String sql = "select * from board where bview like %?%"; [x]
+            //String sql = "select * from board where bview like %3%";  //[x]
+            String sql = "select * from board b inner join member m on b.mno=m.mno  board where btitle like CONCAT('%',? ,'%') ";
+
+
+            ps = conn.prepareStatement(sql);
+            //ps.setString(1,"%"+title+"%");
+            //ps.setInt(1,3);
+            ps.setString(1,title);
+            rs = ps.executeQuery();
+            //System.out.println(rs.next()); //print 에 rs.next()하면  총 2번 돌기 때문에 찍으면 안된다
+            while (rs.next()){
+                BoardDto boardDto = new BoardDto(rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt("bview"),
+                        rs.getInt("mno"),
+                        rs.getInt("bno"));      // DTO 1개 만들고 바로 add
+
+                //BoardDto boardDto=new BoardDto(btitle,bcontent,bdate,bview,mno,bno);
+                boardDto.setMid(rs.getString("mid"));
+
+                list.add(boardDto);
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return list;
+    }   //  search 메소드 end
 }

@@ -82,6 +82,14 @@ public class BoardController {
 
     }
 
+    //  12. 제목 검색 함수
+    public ArrayList<BoardDto> search(String title){
+        //ArrayList<BoardDto> result = BoardDao.getInstance().search(title);
+       // System.out.println(BoardDao.getInstance().search(title)); DAO가 두번 실행됨
+        return BoardDao.getInstance().search(title);
+
+    }   //  search 메소드 end
+
 
 
 }

@@ -35,8 +35,8 @@
 
 
 
-    AppStart : main함수를 가지고 처음에 View 실행해주는 클래스
+    project.AppStart : main함수를 가지고 처음에 View 실행해주는 클래스
     View: Scanner 와 Print 메소드를 이용한 입출력 해주는 클래스
-    Controller: View로부터 받은 데이터를 Dao 에게 전달하는 역할
-    Dao: DB와 연동해서 받은 데이터를 DB의 SQL 처리후 결과를 Controller에게 전달하는 역할
+    Controller: View로부터 받은 데이터를 project.model.Dao 에게 전달하는 역할
+    project.model.Dao: DB와 연동해서 받은 데이터를 DB의 SQL 처리후 결과를 Controller에게 전달하는 역할
     Dto:이동간의 데이터가 많을때 분류별로 만든 클래스

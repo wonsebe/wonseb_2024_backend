@@ -112,21 +112,43 @@ public class BoardView {// MemberView라는 클래스를 공개적으로 정의�
     public  void  bPrint(){
         //BoardController클래스에서 가져온 getInstance함수안에 bPrint값을 BoardDto매개변수로하는 배열에 대입/저장
         ArrayList<BoardDto> result= BoardController.getInstance().bPrint();
-        System.out.println("번호\t조회수\t작성일\t\t\t제목");
+        System.out.println("번호\t조회수\t작성자\t\t\t작성일\t\t제목");
         result.forEach(dto->{  //리스트객체명 . forEach(반복변수->{실행문; });
                                     //리스트내 dto를 하나씩 반복변수에 대입 반복
             System.out.printf("%2d\t%2d\t%10s\t%10s\t%s \n",dto.getBno(),dto.getBview(),dto.getMid(),dto.getBdate(),dto.getBtitle());
         }); //dto안에 번호,조회수,날짜,제목을 가져와 출력
-        System.out.print("0. 글쓰기 1~: 개별글조회"); int ch= scan.nextInt();
+        System.out.print("-1: 제목검색 0. 글쓰기 1~: 개별글조회"); int ch= scan.nextInt();
+
         if(ch==0){
             bWrite();
-        } else if (ch>=1) { bView(ch);
-
-
+        } else if (ch>=1) { bView(ch);}
+        else if(ch== -1) {
+            search();
         }
 
-
     }
+
+    //12.제목 검색 함수
+
+        //  12. 제목 검색 함수
+        public void search(){
+            scan.nextLine();
+            System.out.println(" >> 찾을 제목을 입력해주세요. << ");
+            String title = scan.nextLine();
+            ArrayList<BoardDto> result = BoardController.getInstance().search(title);
+            System.out.println(result);
+            if(result.isEmpty()){
+                System.out.println(" 찾는 게시물이 없습니다.");
+            }else{
+                System.out.println("번호\t 조회수\t 작성자\t\t\t작성일 \t제목");
+                result.forEach(dto->{  //리스트객체명 . forEach(반복변수->{실행문; });
+                    //리스트내 dto를 하나씩 반복변수에 대입 반복
+                    System.out.printf("%2d\t%2d\t%10s\t%10s\t%s \n",dto.getBno(),dto.getBview(),dto.getMid(),dto.getBdate(),dto.getBtitle());
+                });
+            }
+        }   //  search 메소드 end
+
+
 
 
     //5. 게시물 쓰기 함수 -

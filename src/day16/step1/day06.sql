@@ -124,11 +124,16 @@ select *from board join member using(mno);
 select *from board inner join member on board.mno=member.mno;
 	#테이블명을 간소화할 때
     select *from board b inner join member m on b.mno=m.mno;
+    
+    
+    select * from reply r inner join member m on r.mno=m.mno where r.bno=1;
 
     
 
+#조회수 증가 처리 , 조회수 1증가 , update 기존 필드값을 변경 , update
+update board set bview=1;
 
-
+select *from board; 
 
 
 
